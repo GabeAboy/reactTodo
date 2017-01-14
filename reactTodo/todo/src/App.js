@@ -26,11 +26,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <h1>Hello World</h1>
+      <h1>Todo List</h1>
         <TodoList toggleTask={this.toggleTask.bind(this)}
-
+              saveTask={this.saveTask.bind(this)}
+              deleteTask={this.deleteTask.bind(this)}
               todos={this.state.todos}/>
-        <CreateTodo
+        <CreateTodo todos={this.state.todos}
                     createTask={this.createTask.bind(this)}
           />
       </div>
@@ -50,6 +51,15 @@ class App extends Component {
     foundTodo.isComplete = !foundTodo.isComplete
     this.setState({todos:this.state.todos})
 
+  }
+  saveTask(oldTask,newTask){
+    const foundTodo=_.find(this.state.todos,todo=>todo.task===oldTask);
+    foundTodo.task=newTask;
+    this.setState({todos:this.state.todos})
+  }
+  deleteTask(taskToDelete){
+    _.remove(this.state.todos,todo=>todo.task===taskToDelete);
+    this.setState({todos:this.state.todos})
   }
 }
 
