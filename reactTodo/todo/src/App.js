@@ -14,6 +14,7 @@ const todos = [
   }
 
 ]
+
 class App extends Component {
   constructor(props){
     super(props)
@@ -26,9 +27,20 @@ class App extends Component {
       <div className="App">
       <h1>Hello World</h1>
         <TodoList todos={this.state.todos}/>
-        <CreateTodo/>
+        <CreateTodo
+                    createTask={this.createTask.bind(this)}
+          />
       </div>
     );
+  }
+  createTask(task){
+    this.state.todos.push({
+      task,
+      isComplete:false
+    })
+    this.setState({
+      todos:this.state.todos
+    })
   }
 }
 
