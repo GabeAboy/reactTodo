@@ -26,14 +26,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <h1>Todo List</h1>
-        <TodoList toggleTask={this.toggleTask.bind(this)}
-              saveTask={this.saveTask.bind(this)}
-              deleteTask={this.deleteTask.bind(this)}
-              todos={this.state.todos}/>
-        <CreateTodo todos={this.state.todos}
-                    createTask={this.createTask.bind(this)}
-          />
+        <div className="content">
+        <h1>Todo List</h1>
+          <TodoList toggleTask={this.toggleTask.bind(this)}
+                saveTask={this.saveTask.bind(this)}
+                deleteTask={this.deleteTask.bind(this)}
+                todos={this.state.todos}/>
+          <CreateTodo todos={this.state.todos}
+                      createTask={this.createTask.bind(this)}
+            />
+        </div>
       </div>
     );
   }
