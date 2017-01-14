@@ -26,12 +26,27 @@ export default class TodosListItem extends React.Component{
 
 
   }
+  renderTaskSection(){
+ const {task,isComplete}=this.props;
+ const taskStyle={
+   color: isComplete ? 'green' : 'red',
+   cursor:'pointer'
+ }
+    return(
+      <td style={taskStyle}
+          onClick={this.props.toggleTask.bind(this,task)}
+      >
+
+      {task}</td>
+    )
+
+  }
   render(){
 
     return(
         <tr>
-          <td>{this.props.task}</td>
 
+            {this.renderTaskSection()}
             {this.renderActionSection()}
 
         </tr>

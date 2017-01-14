@@ -14,6 +14,7 @@ export default class TodosList extends React.Component
       event.preventDefault();
       console.log(this.props.createTask);
       this.props.createTask(this.refs.createInput.value)
+      this.refs.createInput.value=''
     }
 
 }
