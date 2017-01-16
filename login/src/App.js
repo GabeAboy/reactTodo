@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import './App.css';
+
+import './App.css'
 
 class App extends Component {
   constructor(props){
@@ -22,8 +23,8 @@ class App extends Component {
         </form>
         <h1>Login up</h1>
         <form onSubmit={this.checkServer.bind(this)}>
-          <input type='text' ref='username' placeholder='Username'/>
-          <input type='text' ref='password' placeholder='Password'/>
+          <input type='text' ref='usercheck' placeholder='Username'/>
+          <input type='text' ref='passcheck' placeholder='Password'/>
           <button onClick={this.checkServer.bind(this)}>Login</button>
 
         </form>
@@ -33,7 +34,8 @@ class App extends Component {
   postServer(event){
     event.preventDefault();
     console.log(this.refs.username.value);
-    fetch('http://localhost:3000/userLogin', {method: 'POST',
+    fetch('http://localhost:3000/userLogin',
+    {method: 'POST',
         headers:{
           'Accept': 'application/json',
           'Content-Type':'application/json',
@@ -48,20 +50,21 @@ class App extends Component {
   }
   checkServer(event){
     event.preventDefault();
+    console.log('check',this.refs.usercheck.value);
     console.log(this.refs.username.value);
-    fetch('http://localhost:3000/userLogin', {method: 'POST',
+    fetch('http://localhost:3000/userLoginCheck', {method: 'POST',
         headers:{
           'Accept': 'application/json',
           'Content-Type':'application/json',
         },
         body: JSON.stringify({
-          username: this.refs.username.value,
-          pass: this.refs.password.value
+          username: this.refs.usercheck.value,
+          pass: this.refs.passcheck.value
         })
       }).then((response)=>{console.log('reponse ',response);})
          .catch((error) => { console.error(error); });
 
-  }
+   }
 }
 
 export default App;

@@ -26,7 +26,37 @@ app.post('/userLogin',function(req,res) {
 
   })
 })
+app.post('/userLoginCheck',function(req,res) {
+  console.log('hit server');
+  console.log('user',req.body.username);
+  db.CHECK_USER([req.body.username,req.body.pass],function(err,response) {
+    console.log('something',response);
+    console.log('err',err);
+    if(!err){
+      if(response.length<=0) {
+        return res.status(404).send('User not found');
+      }
+      return res.status(200).send('success');
+  }
+  else {
+    res.status(422).send('Something went wrong');
+  }
+
+  })
+})
 
 app.listen(port, function() {
   console.log("Started server on port", port);
 });
+// if(!err){
+//   console.log('user',userInfo);
+//   if(userInfo.length<=0) {
+// console.log('user2',userInfo);
+//     return res.status(404).send('User not found');
+//   }
+//   return res.status(200).send('success');
+// }
+// else {
+//   console.log(err);
+//   res.status(422).send('Something went wrong');
+// }
